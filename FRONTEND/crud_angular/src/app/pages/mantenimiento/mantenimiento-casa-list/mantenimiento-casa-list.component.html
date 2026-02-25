@@ -1,0 +1,54 @@
+<div class="container py-3">
+  <div class="card">
+    <div class="card-body table-wrapper">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h2 class="h5 mb-0">Casas</h2>
+        <button type="button" class="btn btn-primary" (click)="abrirAgregar()">Agregar</button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Dirección</th>
+              <th>Referencia</th>
+              <th style="width: 190px">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (casa of casas(); track casa.id) {
+              <tr>
+                <td>{{ casa.id }}</td>
+                <td>{{ casa.nombre }}</td>
+                <td>{{ casa.direccion }}</td>
+                <td>{{ casa.referencia }}</td>
+                <td>
+                  <button class="btn btn-sm btn-warning me-2" (click)="abrirEditar(casa)">Editar</button>
+                  <button class="btn btn-sm btn-danger" (click)="eliminar(casa)">Eliminar</button>
+                </td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="5" class="text-center">No hay registros para mostrar.</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  @if (mostrarModal) {
+    <div class="modal-backdrop-custom" (click)="cerrarModal()"></div>
+    <div class="modal-custom" role="dialog" aria-modal="true">
+      <app-mantenimiento-casa-editar
+        [casa]="casaSeleccionada"
+        [modo]="modoEdicion"
+        (cancelado)="cerrarModal()"
+        (guardado)="onGuardado()"
+      />
+    </div>
+  }
+</div>

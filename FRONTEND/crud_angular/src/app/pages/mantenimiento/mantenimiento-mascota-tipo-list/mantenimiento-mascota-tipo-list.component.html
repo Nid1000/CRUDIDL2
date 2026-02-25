@@ -1,0 +1,52 @@
+<div class="container py-3">
+  <div class="card">
+    <div class="card-body table-wrapper">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h2 class="h5 mb-0">Tipos de mascota</h2>
+        <button type="button" class="btn btn-primary" (click)="abrirAgregar()">Agregar</button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Código</th>
+              <th>Descripción</th>
+              <th style="width: 190px">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (t of tipos(); track t.id) {
+              <tr>
+                <td>{{ t.id }}</td>
+                <td>{{ t.codigo }}</td>
+                <td>{{ t.descripcion }}</td>
+                <td>
+                  <button class="btn btn-sm btn-warning me-2" (click)="abrirEditar(t)">Editar</button>
+                  <button class="btn btn-sm btn-danger" (click)="eliminar(t)">Eliminar</button>
+                </td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="4" class="text-center">No hay registros para mostrar.</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  @if (mostrarModal) {
+    <div class="modal-backdrop-custom" (click)="cerrarModal()"></div>
+    <div class="modal-custom" role="dialog" aria-modal="true">
+      <app-mantenimiento-mascota-tipo-editar
+        [tipo]="seleccionado"
+        [modo]="modoEdicion"
+        (cancelado)="cerrarModal()"
+        (guardado)="onGuardado()"
+      />
+    </div>
+  }
+</div>

@@ -1,0 +1,60 @@
+<div class="container py-3">
+  <div class="card">
+    <div class="card-body table-wrapper">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h2 class="h5 mb-0">Mascotas</h2>
+        <button type="button" class="btn btn-primary" (click)="abrirAgregar()">Agregar</button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Tipo</th>
+              <th>Dueño</th>
+              <th>Casa</th>
+              <th>Sexo</th>
+              <th>Activo</th>
+              <th style="width: 190px">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (m of mascotas(); track m.id) {
+              <tr>
+                <td>{{ m.id }}</td>
+                <td>{{ m.nombre }}</td>
+                <td>{{ m.tipoDescripcion }}</td>
+                <td>{{ m.duenioNombreCompleto }}</td>
+                <td>{{ m.casaNombre }}</td>
+                <td>{{ m.sexo === 'H' ? 'Hembra' : 'Macho' }}</td>
+                <td>{{ (m.estado ?? true) ? 'Sí' : 'No' }}</td>
+                <td>
+                  <button class="btn btn-sm btn-warning me-2" (click)="abrirEditar(m)">Editar</button>
+                  <button class="btn btn-sm btn-danger" (click)="eliminar(m)">Eliminar</button>
+                </td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="8" class="text-center">No hay registros para mostrar.</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  @if (mostrarModal) {
+    <div class="modal-backdrop-custom" (click)="cerrarModal()"></div>
+    <div class="modal-custom" role="dialog" aria-modal="true">
+      <app-mantenimiento-mascota-editar
+        [mascota]="seleccionado"
+        [modo]="modoEdicion"
+        (cancelado)="cerrarModal()"
+        (guardado)="onGuardado()"
+      />
+    </div>
+  }
+</div>

@@ -1,0 +1,90 @@
+<div class="card border-0">
+  <div class="card-header bg-white">
+    <h3 class="h5 mb-0">{{ modo() === 'editar' ? 'Editar mascota' : 'Agregar mascota' }}</h3>
+  </div>
+
+  <div class="card-body">
+    <form [formGroup]="form" class="row g-3" (ngSubmit)="onGuardar()">
+      <div class="col-12 col-md-6">
+        <label class="form-label" for="idDuenioPersona">Dueño (Persona)</label>
+        <select id="idDuenioPersona" class="form-select" formControlName="idDuenioPersona">
+          <option [ngValue]="null">Seleccione</option>
+          @for (p of personas; track p.id) {
+            <option [ngValue]="p.id">{{ p.nombres }} {{ p.apellidoPaterno }} {{ p.apellidoMaterno }}</option>
+          }
+        </select>
+        @if (form.controls.idDuenioPersona.touched && form.controls.idDuenioPersona.invalid) {
+          <div class="invalid-feedback d-block">Seleccione un dueño.</div>
+        }
+      </div>
+
+      <div class="col-12 col-md-6">
+        <label class="form-label" for="idMascotaTipo">Tipo de mascota</label>
+        <select id="idMascotaTipo" class="form-select" formControlName="idMascotaTipo">
+          <option [ngValue]="null">Seleccione</option>
+          @for (t of tipos; track t.id) {
+            <option [ngValue]="t.id">{{ t.descripcion }}</option>
+          }
+        </select>
+        @if (form.controls.idMascotaTipo.touched && form.controls.idMascotaTipo.invalid) {
+          <div class="invalid-feedback d-block">Seleccione un tipo.</div>
+        }
+      </div>
+
+      <div class="col-12">
+        <label class="form-label" for="idCasa">Dónde vive (Casa)</label>
+        <select id="idCasa" class="form-select" formControlName="idCasa">
+          <option [ngValue]="null">(Sin casa)</option>
+          @for (c of casas; track c.id) {
+            <option [ngValue]="c.id">{{ c.nombre }} — {{ c.direccion }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <label class="form-label" for="nombre">Nombre</label>
+        <input id="nombre" type="text" class="form-control" formControlName="nombre" />
+        @if (form.controls.nombre.touched && form.controls.nombre.invalid) {
+          <div class="invalid-feedback d-block">El nombre es obligatorio.</div>
+        }
+      </div>
+
+      <div class="col-12 col-md-3">
+        <label class="form-label" for="sexo">Sexo</label>
+        <select id="sexo" class="form-select" formControlName="sexo">
+          <option value="M">Macho</option>
+          <option value="H">Hembra</option>
+        </select>
+      </div>
+
+      <div class="col-12 col-md-3">
+        <label class="form-label" for="fechaNacimiento">Fecha nacimiento</label>
+        <input id="fechaNacimiento" type="date" class="form-control" formControlName="fechaNacimiento" />
+      </div>
+
+      <div class="col-12 col-md-4">
+        <label class="form-label" for="color">Color</label>
+        <input id="color" type="text" class="form-control" formControlName="color" />
+      </div>
+
+      <div class="col-12 col-md-8">
+        <label class="form-label" for="observaciones">Observaciones</label>
+        <input id="observaciones" type="text" class="form-control" formControlName="observaciones" />
+      </div>
+
+      <div class="col-12">
+        <div class="form-check">
+          <input id="estado" class="form-check-input" type="checkbox" formControlName="estado" />
+          <label class="form-check-label" for="estado">Activo</label>
+        </div>
+      </div>
+
+      <div class="col-12 d-flex justify-content-end gap-2 mt-2">
+        <button type="button" class="btn btn-outline-secondary" (click)="onCancelar()">Cancelar</button>
+        <button type="submit" class="btn btn-primary" [disabled]="cargando">
+          {{ cargando ? 'Guardando...' : 'Guardar' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

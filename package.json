@@ -1,0 +1,13 @@
+{
+  "name": "crud-fullstack",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "start": "npm run start:frontend",
+    "install:frontend": "cd FRONTEND/crud_angular && npm install",
+    "start:frontend": "cd FRONTEND/crud_angular && npm run start",
+    "restore:backend": "cd BACKEND && dotnet restore",
+    "start:backend": "cd BACKEND/Mvc.Api && dotnet run",
+    "dev": "echo \"1) Backend: npm run start:backend  |  2) Frontend: npm run start:frontend\""
+  }
+}

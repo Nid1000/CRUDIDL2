@@ -1,0 +1,32 @@
+<div class="card border-0">
+  <div class="card-header bg-white">
+    <h3 class="h5 mb-0">{{ modo() === 'editar' ? 'Editar tipo de mascota' : 'Agregar tipo de mascota' }}</h3>
+  </div>
+
+  <div class="card-body">
+    <form [formGroup]="form" class="row g-3" (ngSubmit)="onGuardar()">
+      <div class="col-12 col-md-4">
+        <label for="codigo" class="form-label">Código</label>
+        <input id="codigo" type="text" class="form-control" formControlName="codigo" />
+        @if (form.controls.codigo.touched && form.controls.codigo.invalid) {
+          <div class="invalid-feedback d-block">El código es obligatorio.</div>
+        }
+      </div>
+
+      <div class="col-12 col-md-8">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <input id="descripcion" type="text" class="form-control" formControlName="descripcion" />
+        @if (form.controls.descripcion.touched && form.controls.descripcion.invalid) {
+          <div class="invalid-feedback d-block">La descripción es obligatoria.</div>
+        }
+      </div>
+
+      <div class="col-12 d-flex justify-content-end gap-2 mt-2">
+        <button type="button" class="btn btn-outline-secondary" (click)="onCancelar()">Cancelar</button>
+        <button type="submit" class="btn btn-primary" [disabled]="cargando">
+          {{ cargando ? 'Guardando...' : 'Guardar' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
