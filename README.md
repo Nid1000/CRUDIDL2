@@ -1,7 +1,5 @@
 # CRUD (Personas / Casas / Mascotas) - Backend .NET 9 + Frontend Angular
 
-Este proyecto es un ejemplo completo de CRUD de personas con:
-
 - **Backend**: ASP.NET Core Web API (.NET 9) + Entity Framework Core + MySQL  
 - **Frontend**: Angular (standalone components, Angular 17+)  
 
