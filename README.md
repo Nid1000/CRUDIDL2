@@ -2,8 +2,6 @@
 
 ---
 
-## 1. Requisitos en cualquier PC
-
 ### Backend
 
 - **.NET SDK 9.0**  
@@ -16,7 +14,7 @@
 
 ### Frontend
 
-- **Node.js** (versión LTS recomendada, por ejemplo 20.x)  
+- **Node.js** 
 
 - (Opcional) **Angular CLI** global:
 
