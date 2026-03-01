@@ -1,7 +1,5 @@
 # CRUD (Personas / Casas / Mascotas)
 
----
-
 ### Backend
 
 - **.NET SDK 9.0**  
@@ -15,8 +13,6 @@
 ### Frontend
 
 - **Node.js** 
-
-- (Opcional) **Angular CLI** global:
 
 ```bash
 npm install -g @angular/cli
@@ -67,8 +63,6 @@ Desde una terminal en la carpeta raíz del proyecto:
 cd BACKEND/Mvc.Api
 dotnet run
 ```
-
-- El backend se levanta por defecto en:  
   `http://localhost:5133`
 
 - Endpoints principales:
@@ -92,12 +86,12 @@ npx ng serve       # o: ng serve
 
 ---
 
-1. Levantar MySQL y asegurarse de que existe la base `demo_db` con las tablas y tipos de documento.
+1. Levantar MySQL `demo_db` .
 2. Ejecutar el **backend** (`dotnet run` en `BACKEND/Mvc.Api`).
 3. Ejecutar el **frontend** (`npx ng serve` en `FRONTEND/crud_angular`).
 4. Abrir en el navegador:
    - `http://localhost:4200` para la UI Angular.
-   - `http://localhost:5133/api/persona` para probar la API directamente.
+   - `http://localhost:5133/api/persona` 
 
 ---
 
@@ -109,8 +103,7 @@ npm run start
 ```
 
 le salía **Missing script: start** porque **la raíz no tenía package.json**.
-
-Ahora el proyecto ya incluye un `package.json` en la raíz, y puede hacer:
+incluye un `package.json` 
 
 ```bash
 npm run install:frontend
