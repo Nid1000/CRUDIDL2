@@ -7,18 +7,16 @@
 ### Backend
 
 - **.NET SDK 9.0**  
-  Descargar desde: https://dotnet.microsoft.com/es-es/download/dotnet
 
 - **MySQL Server 8.x** (o compatible)  
   - Host: `localhost`  
   - Puerto: `3306`  
   - Usuario: `root`  
-  - **Sin contraseña** (si se usa contraseña, ajustar la cadena de conexión).
+  - **Sin contraseña** ().
 
 ### Frontend
 
 - **Node.js** (versión LTS recomendada, por ejemplo 20.x)  
-  Descargar desde: https://nodejs.org
 
 - (Opcional) **Angular CLI** global:
 
@@ -27,8 +25,6 @@ npm install -g @angular/cli
 ```
 
 ---
-
-## 2. Preparar la base de datos MySQL
 
 1. Crear la base de datos:
 
@@ -42,8 +38,6 @@ USE demo_db;
 - Puedes ejecutar el script `demo_db.sql` de la raíz del proyecto **o**  
 - Ejecutar `BACKEND/Documentacion/Tablas.sql` y luego insertar los tipos de documento.
 
-Los tipos de documento mínimos (para evitar errores de llave foránea) son:
-
 ```sql
 INSERT INTO persona_tipo_documento (id, codigo, descripcion, user_create)
 VALUES (1, 'DNI', 'DNI', 1)
@@ -55,8 +49,6 @@ ON DUPLICATE KEY UPDATE id = id;
 ```
 
 ---
-
-## 3. Configuración de la cadena de conexión
 
 Archivo: `BACKEND/Mvc.Api/appsettings.Development.json`
 
@@ -70,7 +62,6 @@ Si el usuario `root` tiene contraseña en otra PC, solo cambia `Pwd=` por esa co
 
 ---
 
-## 4. Ejecutar el backend
 
 Desde una terminal en la carpeta raíz del proyecto:
 
@@ -90,8 +81,6 @@ dotnet run
 
 ---
 
-## 5. Ejecutar el frontend
-
 Desde otra terminal:
 
 ```bash
@@ -105,8 +94,6 @@ npx ng serve       # o: ng serve
 
 ---
 
-## 6. Flujo completo
-
 1. Levantar MySQL y asegurarse de que existe la base `demo_db` con las tablas y tipos de documento.
 2. Ejecutar el **backend** (`dotnet run` en `BACKEND/Mvc.Api`).
 3. Ejecutar el **frontend** (`npx ng serve` en `FRONTEND/crud_angular`).
@@ -115,8 +102,6 @@ npx ng serve       # o: ng serve
    - `http://localhost:5133/api/persona` para probar la API directamente.
 
 ---
-
-## 7. Solución al error: "Missing script: start"
 
 Si usted estaba parado en la carpeta raíz y ejecutaba:
 
